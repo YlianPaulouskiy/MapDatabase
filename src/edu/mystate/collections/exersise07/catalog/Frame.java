@@ -41,7 +41,9 @@ public class Frame {
             button3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    window.removeAll();
+                    window.dispose();
+                    isAlreadyExist();
                 }
             });
             button4.addActionListener(new ActionListener() {
@@ -149,6 +151,42 @@ public class Frame {
             removeUserWindow.add(back);
 
             removeUserWindow.setVisible(true);
+        }
+
+        public void isAlreadyExist() {
+
+            JFrame existsWindow = new JFrame("Already exists");
+            existsWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            existsWindow.setSize(300, 160);
+            existsWindow.setLayout(new FlowLayout());
+
+            JLabel userNameLab = new JLabel("Введите имя пользователя");
+
+            JTextField userName = new JTextField(20);
+
+            JButton check = new JButton("Проверить");
+            JButton back = new JButton("Назад");
+
+            check.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (database.isAlreadyExists(userName.getText())) {
+                        existsWindow.add(new JLabel("Пользователь существует"));
+                    } else {
+                        existsWindow.add(new JLabel("Пользователь не найден"));
+                    }
+                    existsWindow.setSize(301, 161);
+                }
+            });
+
+            backActionListener(existsWindow, back);
+
+            existsWindow.add(userNameLab);
+            existsWindow.add(userName);
+            existsWindow.add(check);
+            existsWindow.add(back);
+
+            existsWindow.setVisible(true);
         }
 
         private void backActionListener(JFrame window , JButton button) {

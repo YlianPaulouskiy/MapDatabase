@@ -67,18 +67,9 @@ public class Database {
 //        }
 //    }
 //
-//    public boolean isAlreadyExists(String login) {
-//        try {
-//            for (Map<String, String> logAndPass : userData.keySet()) {
-//                if (logAndPass.containsKey(login)) {
-//                    return true;
-//                }
-//            }
-//        } catch (NullPointerException exception) {
-//            exception.printStackTrace();
-//        }
-//        return false;
-//    }
+    public boolean isAlreadyExists(String userName) {
+        return userData.containsKey(userName);
+    }
 //
 //
 //
