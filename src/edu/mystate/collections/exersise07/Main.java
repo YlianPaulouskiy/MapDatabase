@@ -11,7 +11,8 @@ public class Main {
 //        frame.addUser();
 //        frame.removeUser();
 //        frame.changeLogin();
-        
-        }
+        frame.showUsers();
+//        frame.showMainMenu();
+    }
 
 }

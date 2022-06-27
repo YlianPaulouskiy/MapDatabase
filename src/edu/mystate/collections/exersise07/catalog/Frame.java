@@ -65,7 +65,9 @@ public class Frame {
             button6.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    window.removeAll();
+                    window.dispose();
+                    showUsers();
                 }
             });
 
@@ -85,21 +87,21 @@ public class Frame {
             addUserWindow.setSize(300, 280);
             addUserWindow.setLayout(new FlowLayout());
 
-            JTextField userName = new JTextField(20);
-            JTextField login = new JTextField(20);
-            JTextField password = new JTextField(20);
+            JTextField userNameTextField = new JTextField(20);
+            JTextField loginTextField = new JTextField(20);
+            JTextField passwordTextField = new JTextField(20);
 
             JLabel userNameLab = new JLabel("Введите имя пользователя");
             JLabel loginLab = new JLabel("Введите логин ");
             JLabel passwordLab = new JLabel("Введите пароль ");
 
-            JButton add = new JButton("Добавить");
-            JButton back = new JButton("Назад");
+            JButton addButton = new JButton("Добавить");
+            JButton backButton = new JButton("Назад");
 
-            add.addActionListener(new ActionListener() {
+            addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (database.addUser(userName.getText(), login.getText(), password.getText())) {
+                    if (database.addUser(userNameTextField.getText(), loginTextField.getText(), passwordTextField.getText())) {
                         addUserWindow.add(new JLabel("Пользователь добавлен"));
                     } else {
                         addUserWindow.add(new JLabel("Такой пользователь уже существует"));
@@ -108,16 +110,16 @@ public class Frame {
                 }
             });
 
-            backActionListener(addUserWindow, back);
+            backActionListener(addUserWindow, backButton);
 
             addUserWindow.add(userNameLab);
-            addUserWindow.add(userName);
+            addUserWindow.add(userNameTextField);
             addUserWindow.add(loginLab);
-            addUserWindow.add(login);
+            addUserWindow.add(loginTextField);
             addUserWindow.add(passwordLab);
-            addUserWindow.add(password);
-            addUserWindow.add(add);
-            addUserWindow.add(back);
+            addUserWindow.add(passwordTextField);
+            addUserWindow.add(addButton);
+            addUserWindow.add(backButton);
 
             addUserWindow.setVisible(true);
         }
@@ -130,15 +132,15 @@ public class Frame {
 
             JLabel userNameLab = new JLabel("Введите имя пользователя");
 
-            JTextField userName = new JTextField(20);
+            JTextField userNameTextField = new JTextField(20);
 
-            JButton remove = new JButton("Удалить");
-            JButton back = new JButton("Назад");
+            JButton removeButton = new JButton("Удалить");
+            JButton backButton = new JButton("Назад");
 
-            remove.addActionListener(new ActionListener() {
+            removeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (database.removeUser(userName.getText())) {
+                    if (database.removeUser(userNameTextField.getText())) {
                         removeUserWindow.add(new JLabel("Пользователь удален"));
                     } else {
                         removeUserWindow.add(new JLabel("Пользователь не найден"));
@@ -147,12 +149,12 @@ public class Frame {
                 }
             });
 
-            backActionListener(removeUserWindow, back);
+            backActionListener(removeUserWindow, backButton);
 
             removeUserWindow.add(userNameLab);
-            removeUserWindow.add(userName);
-            removeUserWindow.add(remove);
-            removeUserWindow.add(back);
+            removeUserWindow.add(userNameTextField);
+            removeUserWindow.add(removeButton);
+            removeUserWindow.add(backButton);
 
             removeUserWindow.setVisible(true);
         }
@@ -166,15 +168,15 @@ public class Frame {
 
             JLabel userNameLab = new JLabel("Введите имя пользователя");
 
-            JTextField userName = new JTextField(20);
+            JTextField userNameTextField = new JTextField(20);
 
-            JButton check = new JButton("Проверить");
-            JButton back = new JButton("Назад");
+            JButton checkButton = new JButton("Проверить");
+            JButton backButton = new JButton("Назад");
 
-            check.addActionListener(new ActionListener() {
+            checkButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (database.isAlreadyExists(userName.getText())) {
+                    if (database.isAlreadyExists(userNameTextField.getText())) {
                         existsWindow.add(new JLabel("Пользователь существует"));
                     } else {
                         existsWindow.add(new JLabel("Пользователь не найден"));
@@ -183,12 +185,12 @@ public class Frame {
                 }
             });
 
-            backActionListener(existsWindow, back);
+            backActionListener(existsWindow, backButton);
 
             existsWindow.add(userNameLab);
-            existsWindow.add(userName);
-            existsWindow.add(check);
-            existsWindow.add(back);
+            existsWindow.add(userNameTextField);
+            existsWindow.add(checkButton);
+            existsWindow.add(backButton);
 
             existsWindow.setVisible(true);
         }
@@ -199,20 +201,20 @@ public class Frame {
             changeWindow.setSize(300, 280);
             changeWindow.setLayout(new FlowLayout());
 
-            JTextField userName = new JTextField(20);
-            JTextField login = new JTextField(20);
+            JTextField userNameTextField = new JTextField(20);
+            JTextField loginTextField = new JTextField(20);
 
 
             JLabel userNameLab = new JLabel("Введите имя пользователя");
             JLabel loginLab = new JLabel("Введите новый логин ");
 
-            JButton add = new JButton("Изменить");
-            JButton back = new JButton("Назад");
+            JButton changeButton = new JButton("Изменить");
+            JButton backButton = new JButton("Назад");
 
-            add.addActionListener(new ActionListener() {
+            changeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (database.changeLogin(userName.getText(), login.getText())) {
+                    if (database.changeLogin(userNameTextField.getText(), loginTextField.getText())) {
                         changeWindow.add(new JLabel("Логин изменен."));
                     } else {
                         changeWindow.add(new JLabel("Пользователь не найден"));
@@ -221,14 +223,14 @@ public class Frame {
                 }
             });
 
-            backActionListener(changeWindow, back);
+            backActionListener(changeWindow, backButton);
 
             changeWindow.add(userNameLab);
-            changeWindow.add(userName);
+            changeWindow.add(userNameTextField);
             changeWindow.add(loginLab);
-            changeWindow.add(login);
-            changeWindow.add(add);
-            changeWindow.add(back);
+            changeWindow.add(loginTextField);
+            changeWindow.add(changeButton);
+            changeWindow.add(backButton);
 
             changeWindow.setVisible(true);
         }
@@ -239,20 +241,20 @@ public class Frame {
             changeWindow.setSize(300, 280);
             changeWindow.setLayout(new FlowLayout());
 
-            JTextField userName = new JTextField(20);
-            JTextField password = new JTextField(20);
+            JTextField userNameTextField = new JTextField(20);
+            JTextField passwordTextField = new JTextField(20);
 
 
             JLabel userNameLab = new JLabel("Введите имя пользователя");
             JLabel passwordLab = new JLabel("Введите новый логин ");
 
-            JButton add = new JButton("Изменить");
-            JButton back = new JButton("Назад");
+            JButton changeButton = new JButton("Изменить");
+            JButton backButton = new JButton("Назад");
 
-            add.addActionListener(new ActionListener() {
+            changeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (database.changePassword(userName.getText(), password.getText())) {
+                    if (database.changePassword(userNameTextField.getText(), passwordTextField.getText())) {
                         changeWindow.add(new JLabel("Пароль изменен."));
                     } else {
                         changeWindow.add(new JLabel("Пользователь не найден"));
@@ -261,17 +263,37 @@ public class Frame {
                 }
             });
 
-            backActionListener(changeWindow, back);
+            backActionListener(changeWindow, backButton);
 
             changeWindow.add(userNameLab);
-            changeWindow.add(userName);
+            changeWindow.add(userNameTextField);
             changeWindow.add(passwordLab);
-            changeWindow.add(password);
-            changeWindow.add(add);
-            changeWindow.add(back);
+            changeWindow.add(passwordTextField);
+            changeWindow.add(changeButton);
+            changeWindow.add(backButton);
 
             changeWindow.setVisible(true);
         }
+
+        public void showUsers() {
+            JFrame usersWindow = new JFrame("All Users");
+            usersWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            usersWindow.setSize(500,500);
+            usersWindow.setLayout(new FlowLayout());
+
+            JTextArea usersInfoLabel = new JTextArea(database.showUsers());
+            usersInfoLabel.setEditable(false);
+
+            JButton backButton = new JButton("Назад");
+
+            backActionListener(usersWindow, backButton);
+
+            usersWindow.add(usersInfoLabel);
+            usersWindow.add(backButton);
+
+            usersWindow.setVisible(true);
+        }
+
 
         private void backActionListener(JFrame window , JButton button) {
             button.addActionListener(new ActionListener() {

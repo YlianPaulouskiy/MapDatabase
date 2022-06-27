@@ -13,6 +13,13 @@ public class Database {
     public Database() {
     }
 
+    /**Add new User in map
+     *
+     * @param userName userName
+     * @param login login user
+     * @param password password
+     * @return return true if user added
+     */
     public boolean addUser(String userName, String login, String password) {
         int length = userData.size();
         Map<String, String> logAndPass = new HashMap<>();
@@ -23,6 +30,12 @@ public class Database {
         return userData.size() > length;
     }
 
+
+    /**remove exist user from map
+     *
+     * @param userName user name
+     * @return true if user deleted
+     */
     public boolean removeUser(String userName) {
         if (userData.containsKey(userName)) {
             userData.remove(userName);
@@ -31,7 +44,13 @@ public class Database {
             return false;
         }
     }
-//
+
+    /**change login of user
+     *
+     * @param userName user Name
+     * @param newLogin new Login
+     * @return true if login was change
+     */
     public boolean changeLogin(String userName, String newLogin) {
         if (userData.containsKey(userName)) {
             String password = null;
@@ -45,7 +64,13 @@ public class Database {
         }
         return false;
     }
-//
+
+    /**change password of user
+     *
+     * @param userName user name
+     * @param newPassword user password
+     * @return true if password was change
+     */
     public boolean changePassword(String userName, String newPassword) {
         if (userData.containsKey(userName)) {
             for (String key : userData.get(userName).keySet()) {
@@ -55,20 +80,28 @@ public class Database {
         }
         return false;
     }
-//
+
+    /**check is user exist
+     *
+     * @param userName user name
+     * @return true if user exist
+     */
     public boolean isAlreadyExists(String userName) {
         return userData.containsKey(userName);
     }
-//
-//
-//
-//    public void showUsers() {
-//        userData.forEach((key, value) -> {
-//            System.out.print(value + " -> ");
-//            key.forEach((key1,value1) -> System.out.print("login: " + key1 + " password: " + value1 + "\n"));
-//        });
-//    }
-//
-//
-//
+
+    /**show all users with logins and password
+     *
+     * @return info about users
+     */
+    public String showUsers() {
+        StringBuilder stringBuilder = new StringBuilder();
+        userData.forEach((key, value) -> {
+            stringBuilder.append(key).append(" -> ");
+            value.forEach((key1,value1) -> stringBuilder.append("login: ").append(key1).
+                            append(" password: ").append(value1).append("\n\n"));
+        });
+        return stringBuilder.toString();
+    }
+
 }
