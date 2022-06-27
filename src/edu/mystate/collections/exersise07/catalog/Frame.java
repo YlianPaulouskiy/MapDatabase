@@ -33,7 +33,9 @@ public class Frame {
             button2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    window.removeAll();
+                    window.dispose();
+                    removeUser();
                 }
             });
             button3.addActionListener(new ActionListener() {
@@ -93,10 +95,10 @@ public class Frame {
                 public void actionPerformed(ActionEvent e) {
                     if (database.addUser(userName.getText(), login.getText(), password.getText())) {
                         addUserWindow.add(new JLabel("Пользователь добавлен"));
-                        addUserWindow.setSize(301,281);
                     } else {
                         addUserWindow.add(new JLabel("Такой пользователь уже существует"));
                     }
+                    addUserWindow.setSize(301,281);
                 }
             });
 
@@ -114,6 +116,40 @@ public class Frame {
             addUserWindow.setVisible(true);
         }
 
+        public void removeUser() {
+            JFrame removeUserWindow = new JFrame("remove User");
+            removeUserWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            removeUserWindow.setSize(300, 160);
+            removeUserWindow.setLayout(new FlowLayout());
+
+            JLabel userNameLab = new JLabel("Введите имя пользователя");
+
+            JTextField userName = new JTextField(20);
+
+            JButton remove = new JButton("Удалить");
+            JButton back = new JButton("Назад");
+
+            remove.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (database.removeUser(userName.getText())) {
+                        removeUserWindow.add(new JLabel("Пользователь удален"));
+                    } else {
+                        removeUserWindow.add(new JLabel("Пользователь не найден"));
+                    }
+                    removeUserWindow.setSize(301, 161);
+                }
+            });
+
+            backActionListener(removeUserWindow, back);
+
+            removeUserWindow.add(userNameLab);
+            removeUserWindow.add(userName);
+            removeUserWindow.add(remove);
+            removeUserWindow.add(back);
+
+            removeUserWindow.setVisible(true);
+        }
 
         private void backActionListener(JFrame window , JButton button) {
             button.addActionListener(new ActionListener() {

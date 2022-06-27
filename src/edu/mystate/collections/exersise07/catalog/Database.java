@@ -23,19 +23,14 @@ public class Database {
         return userData.size() > length;
     }
 
-//    public void removeUser(String login) {
-//        try {
-//            for (Map<String, String> logAndPass : userData.keySet()) {
-//                if (logAndPass.containsKey(login)) {
-//                    userData.remove(logAndPass);
-//                    System.out.println("Пользователь удален");
-//                    return;
-//                }
-//            }
-//        } catch (NullPointerException exception) {
-//            exception.printStackTrace();
-//        }
-//    }
+    public boolean removeUser(String userName) {
+        if (userData.containsKey(userName)) {
+            userData.remove(userName);
+            return true;
+        } else {
+            return false;
+        }
+    }
 //
 //    public void changeLogin(String login) {
 //        try {
