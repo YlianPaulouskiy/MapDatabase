@@ -57,7 +57,9 @@ public class Frame {
             button5.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    window.removeAll();
+                    window.dispose();
+                    changePassword();
                 }
             });
             button6.addActionListener(new ActionListener() {
@@ -77,7 +79,7 @@ public class Frame {
             window.setVisible(true);
         }
 
-        public void addUser() {
+        private void addUser() {
             JFrame addUserWindow = new JFrame("add User");
             addUserWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             addUserWindow.setSize(300, 280);
@@ -120,7 +122,7 @@ public class Frame {
             addUserWindow.setVisible(true);
         }
 
-        public void removeUser() {
+        private void removeUser() {
             JFrame removeUserWindow = new JFrame("remove User");
             removeUserWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             removeUserWindow.setSize(300, 160);
@@ -155,7 +157,7 @@ public class Frame {
             removeUserWindow.setVisible(true);
         }
 
-        public void isAlreadyExist() {
+        private void isAlreadyExist() {
 
             JFrame existsWindow = new JFrame("Already exists");
             existsWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,7 +193,7 @@ public class Frame {
             existsWindow.setVisible(true);
         }
 
-        public void changeLogin() {
+        private void changeLogin() {
             JFrame changeWindow = new JFrame("change Login");
             changeWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             changeWindow.setSize(300, 280);
@@ -225,6 +227,46 @@ public class Frame {
             changeWindow.add(userName);
             changeWindow.add(loginLab);
             changeWindow.add(login);
+            changeWindow.add(add);
+            changeWindow.add(back);
+
+            changeWindow.setVisible(true);
+        }
+
+        private void changePassword() {
+            JFrame changeWindow = new JFrame("change Password");
+            changeWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            changeWindow.setSize(300, 280);
+            changeWindow.setLayout(new FlowLayout());
+
+            JTextField userName = new JTextField(20);
+            JTextField password = new JTextField(20);
+
+
+            JLabel userNameLab = new JLabel("Введите имя пользователя");
+            JLabel passwordLab = new JLabel("Введите новый логин ");
+
+            JButton add = new JButton("Изменить");
+            JButton back = new JButton("Назад");
+
+            add.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (database.changePassword(userName.getText(), password.getText())) {
+                        changeWindow.add(new JLabel("Пароль изменен."));
+                    } else {
+                        changeWindow.add(new JLabel("Пользователь не найден"));
+                    }
+                    changeWindow.setSize(301, 281);
+                }
+            });
+
+            backActionListener(changeWindow, back);
+
+            changeWindow.add(userNameLab);
+            changeWindow.add(userName);
+            changeWindow.add(passwordLab);
+            changeWindow.add(password);
             changeWindow.add(add);
             changeWindow.add(back);
 

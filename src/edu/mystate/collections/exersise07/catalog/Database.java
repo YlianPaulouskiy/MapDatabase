@@ -46,19 +46,15 @@ public class Database {
         return false;
     }
 //
-//    public void changePass(String login) {
-//        try {
-//            for (Map<String, String> logAndPass : userData.keySet()) {
-//                if (logAndPass.containsKey(login)) {
-//                    logAndPass.put(login,getPassword());
-//                    System.out.println("Пароль сменен");
-//                    return;
-//                }
-//            }
-//        } catch (NullPointerException exception) {
-//            exception.printStackTrace();
-//        }
-//    }
+    public boolean changePassword(String userName, String newPassword) {
+        if (userData.containsKey(userName)) {
+            for (String key : userData.get(userName).keySet()) {
+                userData.get(userName).put(key,newPassword);
+            }
+            return true;
+        }
+        return false;
+    }
 //
     public boolean isAlreadyExists(String userName) {
         return userData.containsKey(userName);
@@ -74,28 +70,5 @@ public class Database {
 //    }
 //
 //
-//    private String getPassword() {
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-//        System.out.println("Введите пароль пользователя.");
-//        String password = null;
-//        try {
-//            password = bufferedReader.readLine();
-//        } catch (IOException exception) {
-//            exception.printStackTrace();
-//        }
-//        return password;
-//    }
 //
-//    private String getLogin() {
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-//        System.out.println("Введите логин пользователя.");
-//        String login = null;
-//        try {
-//            login = bufferedReader.readLine();
-//        } catch (IOException exception) {
-//            exception.printStackTrace();
-//        }
-//        return login;
-//    }
-
 }
