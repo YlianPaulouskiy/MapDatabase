@@ -9,8 +9,8 @@ public class Main {
         Frame frame = new Frame();
 //        frame.showMainMenu();
 //        frame.addUser();
-        frame.removeUser();
-
+//        frame.removeUser();
+        frame.changeLogin();
 //            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 //
 //            Database database = new Database();

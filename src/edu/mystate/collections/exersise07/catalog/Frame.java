@@ -49,7 +49,9 @@ public class Frame {
             button4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    window.removeAll();
+                    window.dispose();
+                    changeLogin();
                 }
             });
             button5.addActionListener(new ActionListener() {
@@ -187,6 +189,46 @@ public class Frame {
             existsWindow.add(back);
 
             existsWindow.setVisible(true);
+        }
+
+        public void changeLogin() {
+            JFrame changeWindow = new JFrame("change Login");
+            changeWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            changeWindow.setSize(300, 280);
+            changeWindow.setLayout(new FlowLayout());
+
+            JTextField userName = new JTextField(20);
+            JTextField login = new JTextField(20);
+
+
+            JLabel userNameLab = new JLabel("Введите имя пользователя");
+            JLabel loginLab = new JLabel("Введите новый логин ");
+
+            JButton add = new JButton("Изменить");
+            JButton back = new JButton("Назад");
+
+            add.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (database.changeLogin(userName.getText(), login.getText())) {
+                        changeWindow.add(new JLabel("Логин изменен."));
+                    } else {
+                        changeWindow.add(new JLabel("Пользователь не найден"));
+                    }
+                    changeWindow.setSize(301, 281);
+                }
+            });
+
+            backActionListener(changeWindow, back);
+
+            changeWindow.add(userNameLab);
+            changeWindow.add(userName);
+            changeWindow.add(loginLab);
+            changeWindow.add(login);
+            changeWindow.add(add);
+            changeWindow.add(back);
+
+            changeWindow.setVisible(true);
         }
 
         private void backActionListener(JFrame window , JButton button) {

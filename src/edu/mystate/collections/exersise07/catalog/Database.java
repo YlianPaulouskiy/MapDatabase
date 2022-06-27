@@ -32,26 +32,19 @@ public class Database {
         }
     }
 //
-//    public void changeLogin(String login) {
-//        try {
-//            String password = null;
-//            String userName = null;
-//            for (Map<String, String> logAndPass : userData.keySet()) {
-//                if (logAndPass.containsKey(login)) {
-//                    userName = userData.get(logAndPass);
-//                    password = logAndPass.get(login);
-//                    userData.remove(logAndPass);
-//                    break;
-//                }
-//            }
-//            Map<String, String> logAndPass = new HashMap<>();
-//            logAndPass.put(getLogin(), password);
-//            userData.put(logAndPass, userName);
-//            System.out.println("Логин изменен");
-//        } catch (NullPointerException exception) {
-//            exception.printStackTrace();
-//        }
-//    }
+    public boolean changeLogin(String userName, String newLogin) {
+        if (userData.containsKey(userName)) {
+            String password = null;
+            for (String key : userData.get(userName).keySet()) {
+                password = userData.get(userName).get(key);
+            }
+            Map<String, String> logAndPass = new HashMap<>();
+            logAndPass.put(newLogin, password);
+            userData.put(userName, logAndPass);
+            return true;
+        }
+        return false;
+    }
 //
 //    public void changePass(String login) {
 //        try {
