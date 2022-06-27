@@ -30,7 +30,36 @@ public class Frame {
                     addUser();
                 }
             });
+            button2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
+                }
+            });
+            button3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            button4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            button5.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            button6.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
 
             window.add(button1);
             window.add(button2);
@@ -45,7 +74,7 @@ public class Frame {
         public void addUser() {
             JFrame addUserWindow = new JFrame("add User");
             addUserWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            addUserWindow.setSize(300, 250);
+            addUserWindow.setSize(300, 280);
             addUserWindow.setLayout(new FlowLayout());
 
             JTextField userName = new JTextField(20);
@@ -57,13 +86,14 @@ public class Frame {
             JLabel passwordLab = new JLabel("Введите пароль ");
 
             JButton add = new JButton("Добавить");
-            JButton back = new JButton("Отмена");
+            JButton back = new JButton("Назад");
 
             add.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (database.addUser(userName.getText(), login.getText(), password.getText())) {
                         addUserWindow.add(new JLabel("Пользователь добавлен"));
+                        addUserWindow.setSize(301,281);
                     } else {
                         addUserWindow.add(new JLabel("Такой пользователь уже существует"));
                     }
@@ -80,7 +110,6 @@ public class Frame {
             addUserWindow.add(password);
             addUserWindow.add(add);
             addUserWindow.add(back);
-
 
             addUserWindow.setVisible(true);
         }

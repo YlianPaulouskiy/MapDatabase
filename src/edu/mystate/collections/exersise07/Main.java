@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         Frame frame = new Frame();
-//        frame.showMainMenu();
-        frame.addUser();
+        frame.showMainMenu();
+//        frame.addUser();
 
 //            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 //
